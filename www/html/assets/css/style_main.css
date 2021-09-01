@@ -1,0 +1,731 @@
+@charset "UTF-8";
+
+:root {
+    --base-color: #ffd000;
+    --main-color: #000080;
+    --accent-color: #5FB300;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 100%;
+}
+
+body {
+    color: var(--main-color);
+    font-family:"メイリオ", Meiryo, "Hiragino Kaku Gothic Pro","Hiragino Kaku Gothic ProN", "游ゴシック", "Yu Gothic", YuGothic, "MS PGothic", sans-serif;
+    line-height: 1.7;
+    letter-spacing: 0.05em;
+}
+
+header {
+    background-color: var(--accent-color);
+    height: 60px;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+
+main {
+    background-image: url(../image/toybox_bgimage.jpg);
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: calc(100vh);
+    padding-top: 100px;
+    padding-bottom: 40px;
+}
+
+img {
+    max-width: 100%;
+}
+
+a{
+    color: var(--main-color);
+    text-decoration: none;
+}
+
+p, input, select, button {
+    font-size: 0.875rem;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 4%;
+}
+
+.wrapper_700 {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 4%;
+}
+
+@media (min-width: 1100px) {
+   .wrapper {
+       padding: 0 44px;
+   }
+}
+
+.font_err {
+    color: red;
+}
+
+.box_err {
+    background-color: pink;
+}
+
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.font_weight_bold {
+    font-weight: bold;
+}
+
+.contents_section {
+    background-color: rgba(255, 250, 245, 0.95);
+    border-radius: 10px;
+    margin: 0 auto 15px;
+    padding: 20px;
+}
+
+
+
+.input_box {
+    border: 1px solid var(--main-color);
+    border-radius: 3px;
+    color: var(--main-color);
+    padding: 0.25rem;
+}
+
+.amount_box {
+    border: 1px solid var(--main-color);
+    border-radius: 3px;
+    color: var(--main-color);
+    padding: 0.125rem;
+}
+
+.box_button {
+    background-color: var(--main-color);
+    border: none;
+    color: white;
+    padding: 0.2rem 0.75rem;
+}
+
+button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.header_content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header_left_content {
+    display: flex;
+}
+
+.welcome_message {
+    margin-top: 8px;
+    margin-left: 25px;
+    font-size: 14px;
+}
+
+.welcome_message p {
+    font-size: 14px;
+}
+
+.welcome_message a:hover {
+    border-bottom: 1px solid var(--main-color);
+}
+
+.link_cart {
+    display: flex;
+    margin-top: 10px;
+}
+
+.circle_cart {
+    background-color: white;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 40px;
+    height: 40px;
+    margin-left: 10px;
+    text-align: center;
+    width: 40px;
+}
+
+.logo img {
+    height: 60px;
+}
+
+/* ログイン・新規ユーザ登録 
+-------------------------------------------*/
+.login_form,
+.register_form {
+    max-width: 400px;
+}
+
+.login_title,
+.register_title {
+    font-size: 1.125rem;
+    font-weight: normal;
+    margin-bottom: 0.875rem;
+}
+
+.register_sub_title {
+    border-bottom: 2px dashed var(--accent-color);
+    font-size: 1rem;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+.login_set,
+.register_set {
+    padding: 0 20px;
+    margin-bottom: 1.25rem;
+}
+
+.register_item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2px;
+}
+
+.login_form p,
+.login_form label,
+.register_form p,
+.register_form label {
+    font-size: 0.875rem;
+}
+
+.register_required, .register_optional {
+    background-color: var(--main-color);
+    border-radius: 5px;
+    color: white;
+    padding: 2px 10px;
+    white-space: nowrap;
+}
+
+.register_required {
+    background-color: #E60820;
+}
+
+.login_form input[type="text"],
+.login_form input[type="password"],
+.register_form input[type="text"],
+.register_form input[type="password"],
+.register_form select {
+    font-size: 0.875rem;
+    width: 100%;
+}
+
+.register_form input[type="radio"] {
+    margin: 0 3px 0 0;
+}
+
+.login_form button,
+.register_form button {
+    background-color: var(--main-color);
+    border: none;
+    color: #fff;
+    display: block;
+    font-size: 0.875rem;
+    margin: 0 auto 10px;
+    padding: 10px;
+    position: relative;
+    text-align: center;
+    width: 175px;
+}
+
+.login_form button:after,
+.register_form button:after {
+    border-right: 2px solid #fff;
+    border-top: 2px solid #fff;
+    content: "";
+    display: inline-block;
+    margin: auto;
+    position: absolute;
+    transform: rotate(45deg);
+    height: 0.4rem;
+    width: 0.4rem;
+    top: 0;
+    bottom: 0;
+    left: 25px;
+}
+
+.login_form a,
+.register_form a {
+    font-size: 0.75rem;
+}
+
+.login_form a:hover,
+.register_form a:hover {
+    border-bottom: 1px solid var(--main-color);
+}
+
+.omit_name_set {
+    margin-bottom: 10px;
+}
+
+.select_sex {
+    display: flex;
+}
+
+.omit_name_set label,
+.select_sex label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.select_sex label:not(:first-child) {
+    margin-left: 1rem;
+}
+
+.login_form input[type="checkbox"] {
+    background-color: red;
+}
+
+/* 商品一覧
+-------------------------------------------*/
+.item_contents {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left_item_contents {
+    width: 240px;
+}
+
+.right_item_contents {
+    width: calc(100% - 260px);
+}
+
+.search_title {
+    font-size: 1rem;
+    font-weight: normal;
+    margin-bottom: 0.25rem;
+}
+
+.search_form input[type="search"] {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+    width: 100%;
+}
+
+.search_form select {
+    font-size: 0.875rem;
+    width: 100%;
+}
+
+.search_form p {
+    font-size: 0.875rem;
+}
+
+
+.search_form input[type="text"] {
+    margin-right: 0.25rem;
+    width: 3.75rem;
+}
+
+.search_set {
+    padding: 0 0.5rem;
+}
+
+.search_set:not(:last-child) {
+    margin-bottom: 1rem;
+}
+
+.search_set label {
+    display: flex;
+    align-items: center;
+}
+
+.item_list h2 {
+    background-color: var(--main-color);
+    color: white;
+    font-size: 1.25rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+}
+
+.sort_item {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sort_item span {
+    font-size: 0.875rem;
+}
+
+.grid {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
+    margin-top: 20px;
+}
+
+.item {
+    background-color: #eeeeee;
+    padding: 15px;
+    max-width: 200px;
+}
+
+.add_cart {
+    text-align: center;
+}
+
+.item p {
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.item_name a:hover {
+    border-bottom: 1px solid var(--main-color);
+}
+
+.item button {
+    background-color: #008800;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+}
+
+.item_img_bg {
+    background-color: white;
+    margin-bottom: 1rem;
+    padding-top: 100%;
+    position: relative;
+}
+
+.item_img_bg img {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.font_price {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.item .sold_out {
+    color: red;
+    font-size: 0.875rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* ショッピングカート
+-------------------------------------------*/
+.cart_contents {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left_cart_contents {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.right_cart_contents {
+    width: 300px;
+}
+
+.cart_item_total {
+    position: sticky;
+    top: 100px;
+}
+
+.flex_column {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart_item_list h2 {
+    background-color: var(--main-color);
+    color: white;
+    font-size: 1.25rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+}
+
+.cart_item {
+    display: flex;
+    padding: 20px 20px 0;
+}
+
+.cart_item:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 128, 0.5);
+    padding-bottom: 20px;
+}
+
+.cart_item_description {
+    flex: 1;
+    margin-left: 30px;
+}
+
+.cart_item_description p,
+.cart_item_description form,
+.cart_item_description input,
+.cart_item_description button {
+    font-size: 0.875rem;
+}
+
+.cart_item_description p,
+.cart_item_description form {
+    margin-bottom: 0.5rem;
+}
+
+.cart_item_description a:hover {
+    border-bottom: 1px solid var(--main-color);
+}
+
+.cart_item_img_bg {
+    background-color: white;
+    width: 150px;
+    height: 150px;
+    position: relative;
+}
+
+.cart_item_img_bg img {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.cart_amount_set {
+    align-items: center;
+    display: flex;
+}
+
+.cart_item_total button {
+    background-color: #e60820;
+    border: none;
+    color: #fff;
+    display: block;
+    font-size: 1rem;
+    margin: 0 auto 20px;
+    padding: 10px;
+    position: relative;
+    text-align: center;
+    width: 175px;
+}
+
+.cart_item_total div {
+    display: flex;
+    font-size: 1rem;
+    justify-content: space-between;
+    margin: 0 auto ;
+    width: 220px;
+}
+
+.cart_item_total div:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+.cart_total_price {
+    color: #e60820;
+}
+
+.cart_item_total {
+    text-align: right;
+}
+
+.cart_item_total a {
+    font-size: 0.75rem;
+}
+
+.cart_item_total a:hover {
+    border-bottom: 1px solid var(--main-color);
+}
+
+/* 購入完了
+-------------------------------------------*/
+.purchase_finish {
+    max-width: 700px;
+}
+
+.purchase_finish h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.finish_top {
+    margin-bottom: 1rem;
+}
+
+.finish_top p {
+    font-size: 1rem;
+}
+
+.finish_top p:nth-child(3) {
+    margin-bottom: 1rem;
+}
+
+.finish_item {
+    display: flex;
+    padding: 20px 20px 0;
+}
+
+.finish_item:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 128, 0.5);
+    padding-bottom: 20px;
+}
+
+.finish_item_img_bg {
+    background-color: white;
+    width: 120px;
+    height: 120px;
+    position: relative;
+}
+
+.finish_item_img_bg img {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.finish_item_description {
+    flex: 1;
+    margin-left: 30px;
+}
+
+.finish_item_description p {
+    margin-bottom: 0.5rem;
+}
+
+.link_list {
+    display: flex;
+    justify-content: center;
+    font-size: 0.875rem;
+    margin: 2rem auto 0;
+}
+
+.link_list li {
+    padding: 0 1rem;
+}
+
+.link_list a:hover {
+    border-bottom: 1px solid var(--main-color);
+}
+
+/* 商品詳細
+-------------------------------------------*/
+.item_detail h2 {
+    background-color: var(--main-color);
+    color: white;
+    font-size: 1.25rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+}
+
+.detail_item {
+    display: flex;
+    padding: 20px 20px 0;
+}
+
+.detail_item_description {
+    flex: 1;
+    margin-left: 30px;
+}
+
+.detail_item_description p {
+    margin-bottom: 0.5rem;
+}
+
+.detail_item_description form {
+    margin-bottom: 1rem;
+}
+
+.detail_item_description a:hover {
+    border-bottom: 1px solid var(--main-color);
+}
+
+.detail_item_description button {
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+}
+
+.insert_button {
+    background-color: #008800;
+}
+
+.detail_item_img_bg {
+    background-color: white;
+    width: 250px;
+    height: 250px;
+    position: relative;
+}
+
+.detail_item_img_bg img {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.detail_item_name {
+    font-size: 1.5rem;
+}
+
+.detail_item_description .detail_comment {
+    margin-bottom: 1.5rem;
+}
+
+.favorite_true {
+    background-color: #e60820;
+    background-color: var(--main-color);
+}
+
+.favorite_false {
+    background-color: gray;
+}
+
+.font_star {
+    color: yellow;
+}

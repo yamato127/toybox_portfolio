@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+html {
+    font-size: 100%;
+}
+
+body {
+    line-height: 1.7;
+    padding: 10px;
+}
+
+section {
+    margin-top: 20px;
+    border-top: solid 1px;
+}
+
+img {
+    max-width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border: solid 1px;
+    padding: 5px 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.page_title {
+    font-size: 2rem;
+    margin: 0.625rem 0;
+}
+
+.section_title {
+    font-size: 1.5rem;
+    margin: 1rem 0 0.625rem;
+}
+
+.font_err {
+    color: red;
+}
+
+.status_false {
+    background-color: gray;
+}
