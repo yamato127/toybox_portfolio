@@ -1,33 +1,33 @@
 <?php
 
-// DBからカート内の全商品データを取得する関数
+// DBから指定の購入履歴を取得する関数
 function get_order($db, $order_id, $user_id, $admin) {
     // SQL文を作成
     $sql = "
         SELECT
-            orders.order_id,
-            orders.user_id,
-            orders.created as order_date,
-            sum(order_details.order_price * order_details.amount) as total_price
+            tb_orders.order_id,
+            tb_orders.user_id,
+            tb_orders.create_date as order_date,
+            sum(tb_order_details.order_price * tb_order_details.amount) as total_price
         FROM
-            orders
+            tb_orders
         JOIN
-            order_details
+            tb_order_details
         ON
-            orders.order_id = order_details.order_id
+            tb_orders.order_id = tb_order_details.order_id
         WHERE
-            orders.order_id = ?
+            tb_orders.order_id = ?
     ";
     // 管理者でなければユーザーIDを条件に追加
     if($admin === false) {
         $sql .= "
             AND
-                orders.user_id = ?
+                tb_orders.user_id = ?
         ";
     }
     $sql .= "
         GROUP BY
-            orders.order_id
+            tb_orders.order_id
     ";
     
     // プレースホルダにバインドする値の配列
@@ -40,32 +40,32 @@ function get_order($db, $order_id, $user_id, $admin) {
     return fetch_query($db, $sql, $params);
 }
 
-// DBからカート内の全商品データを取得する関数
+// DBから購入履歴一覧を取得する関数
 function get_orders($db, $user_id, $admin) {
     // SQL文を作成
     $sql = "
         SELECT
-            orders.order_id,
-            orders.user_id,
-            orders.created as order_date,
-            sum(order_details.order_price * order_details.amount) as total_price
+            tb_orders.order_id,
+            tb_orders.user_id,
+            tb_orders.create_date as order_date,
+            sum(tb_order_details.order_price * tb_order_details.amount) as total_price
         FROM
-            orders
+            tb_orders
         JOIN
-            order_details
+            tb_order_details
         ON
-            orders.order_id = order_details.order_id
+            tb_orders.order_id = tb_order_details.order_id
     ";
     // 管理者でなければユーザーIDを条件に追加
     if($admin === false) {
         $sql .= "
             WHERE
-                orders.user_id = ?
+                tb_orders.user_id = ?
         ";
     }
     $sql .= "
         GROUP BY
-            orders.order_id
+            tb_orders.order_id
         ORDER BY
             order_date DESC
     ";
@@ -79,22 +79,23 @@ function get_orders($db, $user_id, $admin) {
     return fetch_all_query($db, $sql, $params);
 }
 
+// DBから購入明細を取得する関数
 function get_order_details($db, $order_id) {
     // SQL文を作成
     $sql = "
         SELECT
-            items.name,
-            order_details.order_price,
-            order_details.amount,
-            order_details.order_price * order_details.amount as subtotal_price
+            tb_items.name,
+            tb_order_details.order_price,
+            tb_order_details.amount,
+            tb_order_details.order_price * tb_order_details.amount as subtotal_price
         FROM
-            order_details
+            tb_order_details
         JOIN
-            items
+            tb_items
         ON
-            order_details.item_id = items.item_id
+            tb_order_details.item_id = tb_items.item_id
         WHERE
-            order_id = ?
+            tb_order_id = ?
     ";
     
     // プレースホルダにバインドする値の配列

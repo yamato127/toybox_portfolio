@@ -15,6 +15,7 @@ define('HOME_URL', './index.php');
 define('CART_URL', './cart.php');
 define('FINISH_URL', './finish.php');
 define('ITEM_URL', './item.php');
+define('ORDER_URL', './order.php');
 define('ADMIN_ITEM_URL', './admin_item.php');
 define('ADMIN_USER_URL', './admin_user.php');
 

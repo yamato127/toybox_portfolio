@@ -69,6 +69,12 @@ ul {
     padding: 0 4%;
 }
 
+.wrapper_600 {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 4%;
+}
+
 @media (min-width: 1100px) {
    .wrapper {
        padding: 0 44px;
@@ -135,7 +141,8 @@ button:hover {
     justify-content: space-between;
 }
 
-.header_left_content {
+.header_left_content,
+.header_right_content {
     display: flex;
 }
 
@@ -150,6 +157,21 @@ button:hover {
 }
 
 .welcome_message a:hover {
+    border-bottom: 1px solid var(--main-color);
+}
+
+.header_navi {
+    margin-top: 18px;
+    margin-right: 25px;
+    font-size: 14px;
+    display: flex;
+}
+
+.header_navi li:not(:last-child) {
+    margin-right: 15px;
+}
+
+.header_navi a:hover {
     border-bottom: 1px solid var(--main-color);
 }
 
@@ -728,4 +750,24 @@ button:hover {
 
 .font_star {
     color: yellow;
+}
+
+/* 購入履歴
+-------------------------------------------*/
+.order_list h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.order {
+    padding: 20px 20px 0;
+}
+
+.order:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 128, 0.5);
+    padding-bottom: 20px;
+}
+
+.order p:not(:last-child) {
+    margin-bottom: 0.5rem;
 }
