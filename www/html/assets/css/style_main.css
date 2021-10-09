@@ -771,3 +771,62 @@ button:hover {
 .order p:not(:last-child) {
     margin-bottom: 0.5rem;
 }
+
+/* 購入明細
+-------------------------------------------*/
+.order_detail h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.order_detail p {
+    margin-bottom: 0.5rem;
+}
+
+.order_item {
+    display: flex;
+    padding: 20px 20px 0;
+}
+
+.order_item:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 128, 0.5);
+    padding-bottom: 20px;
+}
+
+.order_item_description {
+    flex: 1;
+    margin-left: 30px;
+}
+
+.order_item_description p,
+.order_item_description form,
+.order_item_description input {
+    font-size: 0.875rem;
+}
+
+.order_item_description p,
+.order_item_description form {
+    margin-bottom: 0.5rem;
+}
+
+.order_item_description a:hover {
+    border-bottom: 1px solid var(--main-color);
+}
+
+.order_item_img_bg {
+    background-color: white;
+    width: 150px;
+    height: 150px;
+    position: relative;
+}
+
+.order_item_img_bg img {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    max-height: 100%;
+}
