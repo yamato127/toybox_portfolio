@@ -84,7 +84,9 @@ function get_order_details($db, $order_id) {
     // SQL文を作成
     $sql = "
         SELECT
+            tb_items.item_id,
             tb_items.name,
+            tb_items.image,
             tb_order_details.order_price,
             tb_order_details.amount,
             tb_order_details.order_price * tb_order_details.amount as subtotal_price
@@ -95,7 +97,7 @@ function get_order_details($db, $order_id) {
         ON
             tb_order_details.item_id = tb_items.item_id
         WHERE
-            tb_order_id = ?
+            order_id = ?
     ";
     
     // プレースホルダにバインドする値の配列

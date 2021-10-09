@@ -24,8 +24,20 @@ $db = get_db_connect();
 // ログインユーザーのデータを取得
 $login_user = get_login_user($db);
 
-// 注文履歴一覧を取得
-$orders = get_orders($db, $login_user['user_id'], is_admin($login_user));
+// 'order_id'のGET値を取得
+$order_id = get_get('order_id');
+
+// 指定の注文番号の購入履歴を取得
+$order = get_order($db, $order_id, $login_user['user_id'], is_admin($login_user));
+
+// 購入履歴が取得できていなければ
+if($order === false) {
+    // エラーメッセージを表示してスクリプトを終了
+    exit(h("エラーが発生しました"));
+}
+
+// 購入明細を取得
+$order_details = get_order_details($db, $order_id);
 
 // カート内の全商品データを取得
 $carts = get_user_carts($db, $login_user['user_id']);
@@ -33,4 +45,4 @@ $carts = get_user_carts($db, $login_user['user_id']);
 $total_amount = get_total_cart_amount($carts);
 
 // ビューの読み込み
-include_once VIEW_PATH . 'order_view.php';
+include_once VIEW_PATH . 'order_detail_view.php';
