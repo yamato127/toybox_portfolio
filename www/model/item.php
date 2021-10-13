@@ -154,6 +154,40 @@ function get_search_items($db, $user_id, $sort_type, $keyword, $category, $favor
     return get_items($db, $user_id, $sort_type, $keyword, $category, $is_favorite);
 }
 
+// ランキング表示用の商品データを取得する関数
+function get_ranking_all($db) {
+    // SQL文を作成
+    $sql = "
+        SELECT
+            tb_items.item_id,
+            name,
+            price,
+            stock,
+            image,
+            status,
+            SUM(amount) as total_amount
+        FROM
+            tb_items
+        JOIN
+            tb_stocks
+        ON
+            tb_items.item_id = tb_stocks.item_id
+        LEFT OUTER JOIN
+            tb_order_details
+        ON
+            tb_items.item_id = tb_order_details.item_id
+        WHERE
+            status = 1
+        GROUP BY
+            tb_items.item_id
+        ORDER BY
+            total_amount DESC
+    ";
+
+    // SQL文を実行して取得した結果を返す
+    return fetch_all_query($db, $sql);
+}
+
 // お気に入りの状態を取得する関数
 function is_favorite($db, $user_id, $item_id) {
     // SQL文を作成

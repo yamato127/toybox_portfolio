@@ -93,6 +93,38 @@ header("X-FRAME-OPTIONS: DENY");
 <?php endfor ?>
                         </div>
                     </section>
+                    <section class="contents_section item_ranking">
+                        <h2>売れ筋ランキング</h2>
+                        <ul class="grid">
+<?php for ($i=0; $i<3; $i++) : ?>
+                            <li>
+                                <img src="<?=h(IMAGE_PATH . 'ranking' . ($i + 1) .'.png')?>" alt="">
+                                <div class="item">
+                                    <form name="ranking_link" action="./item.php">
+                                        <a href="javascript:ranking_link<?php if (count($ranking_all) > 1) echo '[' . $i . ']'; ?>.submit()">
+                                            <div class="item_img_bg"><img src="<?=h(ITEM_IMAGE_PATH . $ranking_all[$i]['image'])?>" alt="商品"></div>
+                                        </a>
+                                        <p class="item_name"><a href="javascript:ranking_link<?php if (count($ranking_all) > 1) echo  '[' . $i . ']'; ?>.submit()"><?=h($ranking_all[$i]['name'])?></a></p>
+                                        <input type="hidden" name="item_id" value="<?=h($ranking_all[$i]['item_id'])?>">
+                                    </form>
+                                    <p><span class="font_price"><?=h(number_format($ranking_all[$i]['price']))?>円</span>(税込)</p>
+<?php if ($ranking_all[$i]['stock'] > 0) : ?>
+                                    <form class="add_cart" method="post" action="./index_add_cart.php">
+<?php foreach($_GET as $key => $value) : ?>
+                                        <input type="hidden" name="<?=h($key)?>" value="<?=h($value)?>">
+<?php endforeach ?>
+                                        <button type="submit">カートに追加</button>
+                                        <input type="hidden" name="item_id" value="<?=h($ranking_all[$i]['item_id'])?>">
+                                        <input type="hidden" name="csrf_token" value="<?=h($csrf_token)?>">
+                                    </form>
+<?php else : ?>
+                                    <p class="sold_out">売り切れ</p>
+<?php endif ?>
+                                </div>
+                            </li>
+<?php endfor ?>
+                        </ul>
+                    </section>
                 </div>
             </div>
         </main>
