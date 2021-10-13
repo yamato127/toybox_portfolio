@@ -36,6 +36,9 @@ $login_user = get_login_user($db);
 // 公開している商品データを取得
 $items = get_search_items($db, $login_user['user_id'], $selected_sort_type, $keyword, $selected_category, $favorite);
 
+// ランキング表示用の商品データを取得
+$ranking_all = get_ranking_all($db);
+
 // カート内の全商品データを取得
 $carts = get_user_carts($db, $login_user['user_id']);
 // カート内商品の合計数量を取得
