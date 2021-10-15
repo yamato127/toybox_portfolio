@@ -47,6 +47,8 @@ define('MAX_STOCK', 99999);
 define('MIN_AMOUNT', 1);
 define('MAX_AMOUNT', 99);
 
+define('MAX_PAGE_RECORD', 8);
+
 // ユーザー判別
 define('USER_TYPE_ADMIN', 1);
 define('USER_TYPE_NORMAL', 2);

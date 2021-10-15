@@ -71,7 +71,7 @@ function get_all_items($db) {
 }
 
 // DBから条件指定で全商品データを取得する関数
-function get_items($db, $user_id, $sort_type, $keyword, $category, $is_favorite) {
+function get_items($db, $user_id, $sort_type, $keyword, $category, $is_favorite, $sql_limit, $page) {
     $sort_sql = PERMITTED_SORT_TYPES[$sort_type];
     if($category !== '') $category_value = PERMITTED_TOY_CATEGORIES[$category];
     
@@ -123,17 +123,26 @@ function get_items($db, $user_id, $sort_type, $keyword, $category, $is_favorite)
             item_id
     " . $sort_sql;
     
-    
+    if($sql_limit) {
+        $sql .= "
+            LIMIT ?, ?
+        ";
+    }
+
     $params = array('%' . $keyword . '%');
     if($category !== '') $params[] = $category_value;
     if($is_favorite) $params[] = $user_id;
-    
+    if($sql_limit) {
+        $params[] = MAX_PAGE_RECORD * ($page - 1);
+        $params[] = MAX_PAGE_RECORD;
+    }
+
     // SQL文を実行して取得した結果を返す
     return fetch_all_query($db, $sql, $params);
 }
 
 // DBから公開されている全商品データを取得する関数
-function get_search_items($db, $user_id, $sort_type, $keyword, $category, $favorite) {
+function get_search_items($db, $user_id, $sort_type, $keyword, $category, $favorite, $sql_limit, $page = 1) {
     if(array_key_exists($sort_type, PERMITTED_SORT_TYPES) === false) {
         $sort_type = array_keys(PERMITTED_SORT_TYPES)[0];
     }
@@ -149,9 +158,13 @@ function get_search_items($db, $user_id, $sort_type, $keyword, $category, $favor
     } else {
         $is_favorite = false;
     }
+
+    if(is_positive_integer($page) === false) {
+        $page = 1;
+    }
     
     // DBから取得したデータを返す
-    return get_items($db, $user_id, $sort_type, $keyword, $category, $is_favorite);
+    return get_items($db, $user_id, $sort_type, $keyword, $category, $is_favorite, $sql_limit, $page);
 }
 
 // ランキング表示用の商品データを取得する関数
@@ -630,4 +643,15 @@ function is_valid_item_status($status) {
     }
     // 整合性チェックの結果を返す
     return $is_valid;
+}
+
+// ページ数の整合性をチェックする関数
+function validate_page($page, $max_page) {
+    // ページ数が正の整数で最大ページ数を超えていなければ
+    if (is_positive_integer($page) && $page <= $max_page) {
+        // ページ数を返す
+        return intval($page);
+    }
+    // ページ数を1にする
+    return 1;
 }

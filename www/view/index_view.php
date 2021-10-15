@@ -18,7 +18,7 @@ header("X-FRAME-OPTIONS: DENY");
                         <form method="get" action="./index.php">
                             <h2 class="search_title center">商品検索</h2>
 <?php foreach($_GET as $key => $value) : ?>
-<?php if($key !== 'keyword' && $key !== 'category' && $key !== 'favorite') : ?>
+<?php if($key !== 'keyword' && $key !== 'category' && $key !== 'favorite' && $key !== 'page') : ?>
                             <input type="hidden" name="<?=h($key)?>" value="<?=h($value)?>">
 <?php endif ?>
 <?php endforeach ?>
@@ -53,7 +53,7 @@ header("X-FRAME-OPTIONS: DENY");
                         <form class="sort_item" method="get" action="./index.php">
                             <span>並べ替え：</span>
 <?php foreach($_GET as $key => $value) : ?>
-<?php if($key !== 'sort_type') : ?>
+<?php if($key !== 'sort_type' && $key !== 'page') : ?>
                             <input type="hidden" name="<?=h($key)?>" value="<?=h($value)?>">
 <?php endif ?>
 <?php endforeach ?>
@@ -91,6 +91,25 @@ header("X-FRAME-OPTIONS: DENY");
 <?php endif ?>
                             </div>
 <?php endfor ?>
+                        </div>
+                        <div class="pagination center">
+<?php if ($page > 1) : ?>
+                            <a href="./index.php?page=<?=h($page - 1 . $search_query)?>" class="page_link">前のページ</a>
+<?php endif ?>
+<?php if ($page > 3 && $max_page > 5) : ?>
+                            <a>&nbsp;...&nbsp;</a>
+<?php endif ?>
+<?php for ($i=1; $i<=$max_page; $i++) : ?>
+<?php if (($page - 2) <= $i && $i <= ($page + 2) || $page <= 3 && $i <= 5 || $page >= ($max_page - 2) && $i >= ($max_page - 4)) : ?>
+                            <a href="./index.php?page=<?=h($i . $search_query)?>" class="page_link<?php if($i === $page) echo " current_page"; ?>"><?=h($i)?></a></li>
+<?php endif ?>
+<?php endfor ?>
+<?php if ($page < $max_page - 2 && $max_page > 5) : ?>
+                            <a>&nbsp;...&nbsp;</a>
+<?php endif ?>
+<?php if ($page < $max_page) : ?>
+                            <a href="./index.php?page=<?=h($page + 1 . $search_query)?>" class="page_link">次のページ</a>
+<?php endif ?>
                         </div>
                     </section>
                     <section class="contents_section item_ranking">
