@@ -464,6 +464,26 @@ button:hover {
     text-align: center;
 }
 
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.page_link {
+    display: block;
+    background-color: white;
+    border: 1px solid var(--main-color);
+    border-radius: 3px;
+    margin: 0 0.1rem;
+    padding: 0 0.5rem;
+}
+
+.current_page {
+    background-color: var(--main-color);
+    color: white;
+}
+
 /* ショッピングカート
 -------------------------------------------*/
 .cart_contents {
